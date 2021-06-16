@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Hero } from '../hero';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-hero-detail',
@@ -8,10 +12,24 @@ import { Hero } from '../hero';
 })
 export class HeroDetailComponent implements OnInit {
 
-  @Input() hero?:Hero //get it from HeroesComponent
-  constructor() { }
+  @Input() hero?: Hero //get it from HeroesComponent
+  constructor(
+    private route: ActivatedRoute, //to extract parameters  from the URL
+    private heroService: HeroService,
+    private location: Location //for interacting with the browser
+  ) { }
 
   ngOnInit(): void {
+    this.getHero();
+  }
+  
+  getHero(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));//get id from the URL
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero);
+  }
+  goBack(): void {
+    this.location.back();
   }
 
 }

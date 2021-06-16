@@ -19,14 +19,7 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);// good when there is a lot of data. asynchronous 
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-
-  }
-
   ngOnInit(): void { //It's a good place to put initialization logic.
-
     this.getHeroes();
   }
 
