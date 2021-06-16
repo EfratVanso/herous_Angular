@@ -10,6 +10,10 @@ import { HEROES } from '../mock-heroes';
 export class HeroesComponent implements OnInit {
   heroes = HEROES;//copy, to expose the array for binding
 
+  selectedHero?: Hero;
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
   constructor() { }
 
   ngOnInit(): void { //It's a good place to put initialization logic.
