@@ -1,4 +1,8 @@
-<div style="border: 1px solid; padding: 10px;width: fit-content;border-radius: 10px;">
-<p>messages works!</p>
+<div style="border: 1px solid; padding: 10px;width: fit-content;border-radius: 10px;"
+    *ngIf="messageService.messages.length">
+
+    <h2>Messages</h2>
+    <button class="clear" (click)="messageService.clear()">Clear messages</button>
+    <div *ngFor='let message of messageService.messages'> {{message}} </div>
 
 </div>
